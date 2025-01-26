@@ -1,6 +1,6 @@
 {
   "name": "hws2",
-  "homepage": "https://github.com/UladislauZh/hws2/",
+  "homepage": "https://UladislauZh.github.io/hws",
   "version": "0.1.0",
   "dependencies": {
     "@emotion/react": "11.10.4",
