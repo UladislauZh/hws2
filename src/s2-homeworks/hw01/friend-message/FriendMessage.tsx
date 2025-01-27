@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./FriendMessage.module.css";
 import { MessageType } from "../HW1";
+import photo from "../avatar.png";
 
 type FriendMessagePropsType = {
   message: MessageType;
@@ -13,11 +14,7 @@ const FriendMessage = (props: FriendMessagePropsType) => {
       className={s.friendMessage}
     >
       <div className={s.friendImageAndText}>
-        <img
-          id={"hw1-friend-avatar-" + props.message.id}
-          src='/src/s2-homeworks/hw01/avatar.png'
-          alt=''
-        />
+        <img id={"hw1-friend-avatar-" + props.message.id} src={photo} alt='' />
         <div className={s.friendText}>
           <div
             id={"hw1-friend-name-" + props.message.id}
