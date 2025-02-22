@@ -1,15 +1,46 @@
 .radio {
+  display: grid;
+  place-content: center;
+
+  width: 20px;
+  height: 20px;
+
+  margin-right: 10px;
+
+  appearance: none;
+  border: 2px solid black;
+  border-radius: 50%;
+
+  font: inherit;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: black;
 }
 
 .radio::before {
+  content: "";
+
+  width: 0.75em;
+  height: 0.75em;
+
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em black;
 }
 
-
 .radio:checked::before {
+  transform: scale(1);
 }
 
 .label {
+  display: flex;
 }
 
 .options {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
 }
