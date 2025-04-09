@@ -17,7 +17,7 @@ import errorUnknown from "./images/error.svg";
 const HW13 = () => {
   const [code, setCode] = useState("");
   const [text, setText] = useState("");
-  const [info, setInfo] = useState(false);
+  const [info, setInfo] = useState("");
   const [image, setImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,7 +30,7 @@ const HW13 = () => {
     setCode("");
     setImage("");
     setText("");
-    setInfo(true);
+    setInfo("");
     setIsLoading(true);
 
     axios
@@ -39,21 +39,26 @@ const HW13 = () => {
         setCode("Код 200!");
         setImage(success200);
         // дописать
-        setText("Text");
-        setInfo(false);
+        setText(res.data.errorText);
+        setInfo(res.data.info);
       })
       .catch((e) => {
         // дописать
-        setInfo(false);
         if (e.response.status === 400) {
           setImage(error400);
-          setText("400");
+          setCode("400!");
+          setText(e.response.data.errorText);
+          setInfo(e.response.data.info);
         } else if (e.response.status === 500) {
           setImage(error500);
-          setText("500");
+          setCode("500!");
+          setText(e.response.data.errorText);
+          setInfo(e.response.data.info);
         } else {
           setImage(errorUnknown);
-          setText("unknown");
+          setCode("unknown");
+          setText(e.message);
+          setInfo(e.name);
         }
       })
       .finally(() => {
