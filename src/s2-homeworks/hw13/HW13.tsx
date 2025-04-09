@@ -19,6 +19,7 @@ const HW13 = () => {
   const [text, setText] = useState("");
   const [info, setInfo] = useState(false);
   const [image, setImage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const send = (x?: boolean | null) => () => {
     const url =
@@ -30,6 +31,7 @@ const HW13 = () => {
     setImage("");
     setText("");
     setInfo(true);
+    setIsLoading(true);
 
     axios
       .post(url, { success: x })
@@ -53,6 +55,9 @@ const HW13 = () => {
           setImage(errorUnknown);
           setText("unknown");
         }
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -67,7 +72,7 @@ const HW13 = () => {
             onClick={send(true)}
             xType={"secondary"}
             // дописать
-            disabled={info}
+            disabled={isLoading}
           >
             Send true
           </SuperButton>
@@ -76,7 +81,7 @@ const HW13 = () => {
             onClick={send(false)}
             xType={"secondary"}
             // дописать
-            disabled={info}
+            disabled={isLoading}
           >
             Send false
           </SuperButton>
@@ -85,7 +90,7 @@ const HW13 = () => {
             onClick={send(undefined)}
             xType={"secondary"}
             // дописать
-            disabled={info}
+            disabled={isLoading}
           >
             Send undefined
           </SuperButton>
@@ -94,7 +99,7 @@ const HW13 = () => {
             onClick={send(null)} // имитация запроса на не корректный адрес
             xType={"secondary"}
             // дописать
-            disabled={info}
+            disabled={isLoading}
           >
             Send null
           </SuperButton>
@@ -112,11 +117,9 @@ const HW13 = () => {
             <div id={"hw13-text"} className={s.text}>
               {text}
             </div>
-            {info && (
-              <div id={"hw13-info"} className={s.info}>
-                ...Loading
-              </div>
-            )}
+            <div id={"hw13-info"} className={s.info}>
+              {info}
+            </div>
           </div>
         </div>
       </div>
