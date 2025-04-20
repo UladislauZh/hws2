@@ -2,7 +2,9 @@ import React from "react";
 import UP from "../../../../gallery/PolygonUp.svg";
 import DOWN from "../../../../gallery/PolygonDown.svg";
 import NONE from "../../../../gallery/None.svg";
+
 // добавить в проект иконки и импортировать
+
 const downIcon = DOWN;
 const upIcon = UP;
 const noneIcon = NONE;
