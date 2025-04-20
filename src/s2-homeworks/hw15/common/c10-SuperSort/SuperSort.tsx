@@ -1,7 +1,7 @@
 import React from "react";
-import arrowUp from "../c10-SuperSort/gallery/PolygonUp.svg";
-import arrowDown from "../c10-SuperSort/gallery/PolygonDown.svg";
-import arrowUpDown from "../c10-SuperSort/gallery/None.svg";
+import arrowUp from "../../common/c10-SuperSort/icons/Polygon 2.png";
+import arrowDown from "../../common/c10-SuperSort/icons/Polygon 5.png";
+import arrowUpDown from "../../common/c10-SuperSort/icons/Vector.png";
 
 const downIcon = arrowDown;
 const upIcon = arrowUp;
