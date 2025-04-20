@@ -1,9 +1,11 @@
 import React from "react";
+import arrowUp from "../c10-SuperSort/gallery/PolygonUp.svg";
+import arrowDown from "../c10-SuperSort/gallery/PolygonDown.svg";
+import arrowUpDown from "../c10-SuperSort/gallery/None.svg";
 
-// добавить в проект иконки и импортировать
-const downIcon = "🔽";
-const upIcon = "🔼";
-const noneIcon = "⏤";
+const downIcon = arrowDown;
+const upIcon = arrowUp;
+const noneIcon = arrowUpDown;
 
 export type SuperSortPropsType = {
   id?: string;
@@ -13,11 +15,7 @@ export type SuperSortPropsType = {
 };
 
 export const pureChange = (sort: string, down: string, up: string) => {
-  // пишет студент, sort: (click) => down (click) => up (click) => '' (click) => down ...
-  if (sort === "") return down; // если пусто, ставим вниз
-  if (sort === down) return up; // если вниз, ставим вверх
-  if (sort === up) return ""; // если вверх, убираем сортировку
-  return down; // исправить
+  return sort === down ? up : sort === up ? noneIcon : down;
 };
 
 const SuperSort: React.FC<SuperSortPropsType> = ({ sort, value, onChange, id = "hw15" }) => {
@@ -25,19 +23,20 @@ const SuperSort: React.FC<SuperSortPropsType> = ({ sort, value, onChange, id = "
   const down = "1" + value;
 
   const onChangeCallback = () => {
-    onChange(pureChange(sort, down, up));
+    const param = pureChange(sort, down, up);
+    onChange(param);
   };
 
   const icon = sort === down ? downIcon : sort === up ? upIcon : noneIcon;
 
   return (
-    <span id={id + "-sort-" + value} onClick={onChangeCallback}>
-      {/*сделать иконку*/}
-      {/*<img*/}
-      {/*    id={id + '-icon-' + sort}*/}
-      {/*    src={icon}*/}
-      {/*/>*/}
-      {icon} {/*а это убрать*/}
+    <span id={id + "-sort-" + value} onClick={onChangeCallback} style={{ position: "relative" }}>
+      <img
+        id={id + "-icon-" + sort}
+        src={icon}
+        alt={icon}
+        style={{ cursor: "pointer", width: "15px", height: "15px" }}
+      />
     </span>
   );
 };
